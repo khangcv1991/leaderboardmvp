@@ -30,3 +30,77 @@ Referees adjudicates a H2H Contest, ensuring that Competitors are playing in acc
 
 #### Subscribers
 Subscribers are users that want to view Leaderboards they are interested in. They can view any public Leaderboard as well as any private Leaderboard by invitation.
+
+#### How to Run
+Subscribers are users that want to view Leaderboards they are interested in. They can view any public Leaderboard as well as any private Leaderboard by invitation.
+
+1. import Database.sql to mysql
+
+2. configure database connection in services/src/setting.php
+
+3. From the services/public directory run the command:
+    
+   php -S localhost:8080
+#### Testing
+GET: <a>http://localhost:8080/api/v1/users </a><br/>
+GET: <a>http://localhost:8080/api/v1/users/1</a><br/>
+PUT: <a>http://localhost:8080/api/v1/users/1</a><br/>
+DELETE: <a>http://localhost:8080/api/v1/users/1</a><br/>
+
+#### Architecture 
+
+The app is intended to implement as seperated Backend and Front end
+1. Backend: Slim3 with APIs to expose data form database
+2. Frontend: AngularJS or React 
+
+Backend has 2 main groups of APIs
+
+  1. Users <br/>
+     +) GET: get all user <br/>
+     +) GET: get user by id <br/>
+     +) POST: add a new user <br/>
+     +) POST: subscribe selected contest for user <br/>
+     +) POST: add user to a game <br/>
+     +) PUT: update user by id <br/>
+     +) DELETE: delete user by id <br/>
+     +) DELETE: remove subscripton for user <br/>
+     +) DELETE: remove user from a game <br/>
+  2. Game<br/>
+     +) GET: get list of all games<br/>
+     +) GET: get list of contests by selected game<br/>
+     +) POST: add a new game<br/>
+     +) POST: add a contest in a game<br/>
+     +) PUT: update game status: pending, started, finished<br/>
+     +) PUT: update game scores<br/>
+     +) DELETE: delete a game<br/>
+     +) DELETE: delete a contest <br/>
+     
+  There are 4 roles: admin, player, referee, guest <br/>
+  
+ Admin is able to: list, add, create, update,remove user. <br/>
+ Admin is able to: list, add, create, update,remove game. <br/>
+ Player is able to sign in a created game with "pending" status <br/>
+ Player is able to sign out a game <br/>
+ Referee is able to list all games  with "started" status<br/>
+ Referee is able to list all contests in a "started game"<br/>
+ Referee is able to update score for a game <br/>
+ Game has 3 status: Pending, started, finished<br/>
+ After Game status is updated to started, it will trigger a function to generate roundrobin contests <br/>
+ Guest is able to list all started game<br/>
+ Guest is able to list all contests in started game<br/>
+ Guest is able to subscibe to a contest<br/>
+ 
+
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+
+    
+     
+     
+     
